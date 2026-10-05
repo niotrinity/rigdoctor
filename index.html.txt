@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RigDoctor | Professional Remote PC Tuning & Diagnostics</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #141c2e;
+      --card-border: #23304c;
+      --cyan: #00e5ff;
+      --purple: #a855f7;
+      --green: #10d975;
+      --red: #ff3b5c;
+      --amber: #ffb800;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+    
+    /* Header */
+    header { padding: 30px 0; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.6rem; font-weight: 800; color: var(--cyan); letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+    .status-badge { background: rgba(16, 217, 117, 0.15); color: var(--green); border: 1px solid var(--green); padding: 5px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+    .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+
+    /* Hero */
+    .hero { text-align: center; padding: 60px 0 40px; }
+    .hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 40%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 30px; }
+    .cta-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--cyan); color: #000; box-shadow: 0 0 20px rgba(0, 229, 255, 0.4); }
+    .btn-discord { background: #5865F2; color: #fff; box-shadow: 0 0 20px rgba(88, 101, 242, 0.4); }
+    .btn-whatsapp { background: #128C7E; color: #fff; }
+
+
+    /* Services Grid */
+    .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; text-align: center; color: var(--text); }
+    .section-sub { text-align: center; color: var(--text-muted); margin-bottom: 40px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 60px; }
+    .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 25px; transition: border-color 0.2s; }
+    .card:hover { border-color: var(--cyan); }
+    .card-icon { font-size: 2rem; margin-bottom: 15px; }
+    .card h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--cyan); }
+    .card p { color: var(--text-muted); font-size: 0.95rem; }
+
+
+    /* Comparison Table */
+    .compare-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 35px 25px; margin-bottom: 60px; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
+    .compare-card { padding: 20px; border-radius: 10px; }
+    .compare-stock { background: rgba(255, 59, 92, 0.08); border: 1px solid rgba(255, 59, 92, 0.3); }
+    .compare-tuned { background: rgba(16, 217, 117, 0.08); border: 1px solid rgba(16, 217, 117, 0.3); }
+    .compare-card h4 { font-size: 1.2rem; margin-bottom: 15px; }
+    .metric { margin-bottom: 12px; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px; }
+    .metric-name { color: var(--text-muted); font-size: 0.9rem; }
+    .metric-val { font-weight: 700; font-family: monospace; font-size: 1rem; }
+
+
+    /* Contact Box */
+    .contact-box { background: linear-gradient(180deg, #141c2e 0%, #0d1322 100%); border: 2px solid var(--green); border-radius: 16px; padding: 40px 30px; text-align: center; margin-bottom: 60px; }
+    .contact-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px; }
+    .contact-item { background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); padding: 12px 20px; border-radius: 8px; text-decoration: none; color: var(--text); font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s; }
+    .contact-item:hover { background: rgba(255,255,255,0.12); }
+
+
+    /* Footer */
+    footer { text-align: center; padding: 30px 0; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--card-border); }
+
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="container">
+    <header>
+      <div class="logo">⚡ RIGDOCTOR</div>
+      <div class="status-badge"><span class="dot"></span> GLOBAL REMOTE TUNING AVAILABLE</div>
+    </header>
+
+
+    <section class="hero">
+      <h1>Crashing Mid-Game? Thermal Throttling?</h1>
+      <p>Precision 1-on-1 remote PC tuning, custom undervolting, memory timing optimization, and kernel crash diagnosis. No expensive new parts required.</p>
+      
+      <div class="cta-group">
+        <a href="https://wa.me/916383890318?text=Hi%20RigDoctor,%20I%20need%20help%20optimizing%20my%20PC" target="_blank" class="btn btn-whatsapp">💬 Chat on WhatsApp</a>
+        <a href="https://discord.gg/WfzzAyzJk" target="_blank" class="btn btn-discord">🎮 Join Discord Server</a>
+        <a href="https://t.me/+916383890318" target="_blank" class="btn btn-primary">✈️ Telegram Message</a>
+      </div>
+    </section>
+
+
+    <h2 class="section-title">What We Solve Remotely</h2>
+    <p class="section-sub">Connected worldwide via low-latency, secure Parsec or AnyDesk sessions.</p>
+
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Custom Undervolting</h3>
+        <p>Surgical voltage-frequency curve adjustment. Drops CPU and GPU temperatures by 15°C–25°C while maintaining higher sustained boost clocks.</p>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">🏎️</div>
+        <h3>RAM & Timing Tuning</h3>
+        <p>Tightening secondary and tertiary memory sub-timings to eliminate frame-time spikes, micro-stutters, and drastically improve 1% lows.</p>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>BSOD & Crash Dumps</h3>
+        <p>Deep kernel analysis (WinDbg) of memory dump files to identify exact driver conflicts, unstable overclocks, and corrupt system services.</p>
+      </div>
+
+
+      <div class="card">
+        <div class="card-icon">❄️</div>
+        <h3>Acoustic & Fan Curves</h3>
+        <p>Custom calibrated BIOS and software fan curves to eradicate loud jet-engine fan noise while keeping VRMs, memory, and core components cool.</p>
+      </div>
+    </div>
+
+
+    <!-- Comparison -->
+    <div class="compare-section">
+      <h2 class="section-title">Proven Benchmark Results</h2>
+      <p class="section-sub">Stock Factory Settings vs. RigDoctor Optimized</p>
+      
+      <div class="compare-grid">
+        <div class="compare-card compare-stock">
+          <h4 style="color: var(--red);">❌ Stock Out-of-the-Box</h4>
+          <div class="metric"><span class="metric-name">CPU/GPU Peak Temp:</span><span class="metric-val" style="color: var(--red);">96°C (Throttling)</span></div>
+          <div class="metric"><span class="metric-name">Sustained Boost Clock:</span><span class="metric-val">4.15 GHz (Dropped)</span></div>
+          <div class="metric"><span class="metric-name">1% Low Framerate:</span><span class="metric-val" style="color: var(--red);">48 FPS (Stutter)</span></div>
+          <div class="metric"><span class="metric-name">Acoustic Noise:</span><span class="metric-val">54 dBA (Loud)</span></div>
+        </div>
+
+
+        <div class="compare-card compare-tuned">
+          <h4 style="color: var(--green);">✔️ RigDoctor Tuned</h4>
+          <div class="metric"><span class="metric-name">CPU/GPU Peak Temp:</span><span class="metric-val" style="color: var(--green);">72°C (-24°C Cooler)</span></div>
+          <div class="metric"><span class="metric-name">Sustained Boost Clock:</span><span class="metric-val" style="color: var(--green);">4.85 GHz (Locked)</span></div>
+          <div class="metric"><span class="metric-name">1% Low Framerate:</span><span class="metric-val" style="color: var(--green);">94 FPS (+95% Smooth)</span></div>
+          <div class="metric"><span class="metric-name">Acoustic Noise:</span><span class="metric-val" style="color: var(--green);">33 dBA (Whisper)</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Direct Contact Box -->
+    <div class="contact-box">
+      <h2>Ready to Optimize Your Rig?</h2>
+      <p style="color: var(--text-muted); margin-top: 8px;">Direct 1-on-1 booking & technical inquiries available 24/7 worldwide.</p>
+      
+      <div class="contact-links">
+        <a href="https://wa.me/916383890318?text=Hello%20RigDoctor,%20I%20would%20like%20to%20book%20a%20tuning%20session" target="_blank" class="contact-item">
+          💬 WhatsApp: +91 63838 90318
+        </a>
+        <a href="https://t.me/+916383890318" target="_blank" class="contact-item">
+          ✈️ Telegram: 6383890318
+        </a>
+        <a href="https://discord.gg/WfzzAyzJk" target="_blank" class="contact-item" style="border-color: #5865F2;">
+          🎮 Discord Server
+        </a>
+        <a href="mailto:niotrinity1998@gmail.com" class="contact-item">
+          ✉️ niotrinity1998@gmail.com
+        </a>
+      </div>
+    </div>
+
+
+    <footer>
+      <p>© 2026 RigDoctor PC Tuning. Serving clients across North America, Europe, UK, Australia & Asia.</p>
+    </footer>
+  </div>
+
+
+</body>
+</html>
